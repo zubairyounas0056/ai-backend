@@ -1,10 +1,7 @@
 from concurrent.futures import ThreadPoolExecutor
-from human_simulator import HumanSimulator
 import threading
 import time
 import threading
-
-simulator = HumanSimulator()
 
 executor = ThreadPoolExecutor(max_workers=10)
 
