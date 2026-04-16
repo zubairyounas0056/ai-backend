@@ -1,0 +1,5 @@
+{
+  "admin@gmail.com": {"status": "active"},
+  "user1@gmail.com": {"status": "active"},
+  "user2@gmail.com": {"status": "disabled"}
+}
