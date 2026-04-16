@@ -4,14 +4,12 @@ from database import create_tables, get_db
 from task_engine import run_parallel, stop_all_tasks
 from scheduler import add_interval_job
 from ai_engine import process_input
-from human_simulator import HumanSimulator
 from control import STOP_FLAG, start_listener
 from ai_brain import think
 from vpn_manager import add_vpn, load_vpns, remove_vpn
 from concurrent.futures import ThreadPoolExecutor
 
 start_listener()
-simulator = HumanSimulator()
 import subprocess
 import os
 import requests
