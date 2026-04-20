@@ -3,23 +3,23 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from database import create_tables, get_db
 # from task_engine import run_parallel, stop_all_tasks
-from scheduler import add_interval_job
-from ai_engine import process_input
-from control import STOP_FLAG, start_listener
-from ai_brain import think
-from vpn_manager import add_vpn, load_vpns, remove_vpn
+# from scheduler import add_interval_job
+# from ai_engine import process_input
+# from control import STOP_FLAG, start_listener
+# from ai_brain import think
+# from vpn_manager import add_vpn, load_vpns, remove_vpn
 from concurrent.futures import ThreadPoolExecutor
 
-import subprocess
+# import subprocess
 import os
 import requests
 import datetime
-import time
+# import time
 import urllib.parse
-import websocket
+# import websocket
 import json
 import random
-import threading
+# import threading
 
 # 🔥 ACTIVE BROWSERS TRACKING
 active_browsers = {}
@@ -435,6 +435,7 @@ def toggle_task(data: dict):
 # ================= OPEN URL (SMART RETRY) =================
 @app.post("/open-url")
 def open_url(data: dict):
+    return {"status": "disabled_on_server"}
 
     targets = data.get("targets", [])
     url = data.get("url")
@@ -516,6 +517,7 @@ def open_url(data: dict):
 # ================= RUN TASK =================
 @app.post("/run-task")
 def run_task(data: dict):
+    return {"status": "disabled_on_server"}
 
     task_id = data.get("id")
 
@@ -1541,7 +1543,7 @@ def verify_user(data: dict):
 port = int(os.environ.get("PORT", 8000))
 
 if __name__ == "__main__":
-    start_listener()
+    # start_listener()
     import uvicorn
 
     uvicorn.run("main:app", host="0.0.0.0", port=8000)
@@ -1568,7 +1570,7 @@ def check_expired_users():
 
 
 # 🔥 RUN EVERY 1 HOUR
-add_interval_job(check_expired_users, 3600)
+# add_interval_job(check_expired_users, 3600)
 
 
 @app.post("/inject-js")
