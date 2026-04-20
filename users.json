@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "email": "admin@gmail.com",
+    "password": "1234",
+    "role": "admin",
+    "status": "active",
+    "expiry": null
+  },
+  {
+    "id": 2,
+    "email": "user@gmail.com",
+    "password": "1234",
+    "role": "user",
+    "status": "active",
+    "expiry": "2026-12-31"
+  }
+]
