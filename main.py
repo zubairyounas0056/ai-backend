@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 from database import create_tables, get_db
-from task_engine import run_parallel, stop_all_tasks
+# from task_engine import run_parallel, stop_all_tasks
 from scheduler import add_interval_job
 from ai_engine import process_input
 from control import STOP_FLAG, start_listener
