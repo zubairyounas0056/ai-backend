@@ -189,7 +189,7 @@ def monitor_browsers():
         time.sleep(2)
 
 
-threading.Thread(target=monitor_browsers, daemon=True).start()
+# threading.Thread(target=monitor_browsers, daemon=True).start()
 
 
 # ================= TARGET PARSER =================
