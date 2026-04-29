@@ -348,6 +348,13 @@ def toggle_user(data: dict):
         conn.close()
         return {"status": "error"}
 
+    cursor.execute("SELECT role FROM users WHERE id=?", (user_id,))
+    role_data = cursor.fetchone()
+    
+    if role_data["role"] == "admin":
+        conn.close()
+        return {"status": "blocked"}  # ❌ admin disable not allowed
+    
     new_status = "disabled" if user["status"] == "active" else "active"
 
     cursor.execute("UPDATE users SET status=? WHERE id=?", (new_status, user_id))
@@ -355,6 +362,32 @@ def toggle_user(data: dict):
     conn.commit()
     conn.close()
     return {"status": "updated"}
+
+@app.post("/delete-user")
+def delete_user(data: dict):
+    conn = get_db()
+    cursor = conn.cursor()
+
+    user_id = data.get("id")
+
+    # ❌ Admin delete block
+    cursor.execute("SELECT role FROM users WHERE id=?", (user_id,))
+    user = cursor.fetchone()
+
+    if not user:
+        conn.close()
+        return {"status": "error"}
+
+    if user["role"] == "admin":
+        conn.close()
+        return {"status": "blocked"}  # admin delete allowed nahi
+
+    cursor.execute("DELETE FROM users WHERE id=?", (user_id,))
+
+    conn.commit()
+    conn.close()
+
+    return {"status": "deleted"}
 
 
 # ================= LOGS =================
